@@ -1,0 +1,26 @@
+{
+  "name": "process",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start:dev": "nest start --watch",
+    "start": "node dist/main.js",
+    "build": "nest build"
+  },
+  "dependencies": {
+    "@nestjs/bullmq": "^11.0.4",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/mongoose": "^10.0.0",
+    "@nestjs/platform-express": "^10.0.0",
+    "bullmq": "^5.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "ioredis": "^5.0.0",
+    "mongoose": "^7.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.0.0",
+    "typescript": "^5.1.6"
+  }
+}

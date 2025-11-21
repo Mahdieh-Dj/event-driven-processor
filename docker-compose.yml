@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  agent:
+    build: ./agent
+    container_name: agent
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - QUEUE_NAME=events_queue
+      - AGENT_ID=agent-1
+    depends_on:
+      - redis
+
+  process:
+    build: ./process
+    container_name: process
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MONGO_URI=mongodb://mongo:27017/telemetry
+      - QUEUE_NAME=events_queue
+    depends_on:
+      - redis
+      - mongo
+
+volumes:
+  mongo-data:
