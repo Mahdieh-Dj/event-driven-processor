@@ -8,12 +8,10 @@ export class EventProducerService implements OnModuleInit {
   constructor(@InjectQueue('events') private readonly eventQueue: Queue) {}
 
   onModuleInit() {
-    // start producing
-    setInterval(() => this.produceOne(), 200); // 5 per second
+    setInterval(() => this.produceOne(), 200);
   }
 
   async produceOne() {
-    console.log("in produce")
     const types = ['temperature', 'pressure', 'speed', 'voltage', 'noise'];
     const event = {
       agentId: process.env.AGENT_ID || `agent-${faker.string.uuid()}`,

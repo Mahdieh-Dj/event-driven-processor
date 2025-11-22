@@ -13,7 +13,6 @@ export class EventsProcessor extends WorkerHost {
   }
 
   async process(job: Job) {
-    console.log('in process');
     const event = job.data as {
       agentId: string;
       type: string;
